@@ -43,42 +43,64 @@ function App() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {!loading && !error && (
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Symbol</th>
-              <th>Market Cap</th>
-              <th>Price</th>
-              <th>Circulating Supply</th>
-              <th>Volume (24hrs)</th>
-            </tr>
-          </thead>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Market Cap</th>
+                <th>Price</th>
+                <th>Circulating Supply</th>
+                <th>Volume (24hrs)</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {crypto
-              .filter((coin) =>
-                coin.name.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((coin, index) => (
-                <tr key={coin.id}>
-                  <td>{index + 1}</td>
+            <tbody>
+              {crypto
+                .filter((coin) =>
+                  coin.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((coin, index) => (
+                  <tr key={coin.id}>
+                    <td>{index + 1}</td>
 
-                  <td className="logo">
-                    <img src={coin.image} alt={coin.name} width="30" />
-                    <p>{coin.name}</p>
-                  </td>
+                    <td className="logo">
+                      <img src={coin.image} alt={coin.name} width="30" />
+                      <p>{coin.name}</p>
+                    </td>
 
-                  <td>{coin.symbol.toUpperCase()}</td>
-                  <td>₹{coin.market_cap.toLocaleString()}</td>
-                  <td>₹{coin.current_price.toLocaleString()}</td>
-                  <td>{coin.circulating_supply.toLocaleString()}</td>
-                  <td>₹{coin.total_volume.toLocaleString()}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+                    <td>{coin.symbol.toUpperCase()}</td>
+
+                    <td>
+                      ₹{coin.market_cap !== null
+                        ? coin.market_cap.toLocaleString()
+                        : "N/A"}
+                    </td>
+
+                    <td>
+                      ₹{coin.current_price !== null
+                        ? coin.current_price.toLocaleString()
+                        : "N/A"}
+                    </td>
+
+                    <td>
+                      {coin.circulating_supply !== null
+                        ? coin.circulating_supply.toLocaleString()
+                        : "N/A"}
+                    </td>
+
+                    <td>
+                      ₹{coin.total_volume !== null
+                        ? coin.total_volume.toLocaleString()
+                        : "N/A"}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
