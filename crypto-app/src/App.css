@@ -14,13 +14,25 @@
 }
 
 
+.App {
+  width: 100%;
+  max-width: 1200px;   /* 🔒 lock layout width */
+  margin: 0 auto;     /* center horizontally */
+  padding: 30px;
+  background-color: #f2f6ff;
+  color: #111;
+  min-height: 100vh;  /* 🔒 prevents vertical jump */
+}
+
+
+
 table {
   width: 100%;
-  max-width: 1200px;
-  margin: 20px auto;
+  table-layout: fixed;   /* 🔒 prevents column resize */
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: #fff;
 }
+
 
 thead {
   background-color: #da5151;
@@ -44,4 +56,20 @@ th, td {
 .logo p {
   margin: 0;
   font-weight: 500;
+}
+
+
+
+input {
+  width: 300px;
+  padding: 8px 12px;
+  margin: 20px auto;
+  display: block;
+}
+
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 400px; /* prevents jump when rows reduce */
 }
